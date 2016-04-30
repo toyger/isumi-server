@@ -1,0 +1,11 @@
+[package]
+name = "isumi-server"
+version = "0.1.0"
+authors = ["stormcat24 <stormcat24@stormcat.io>"]
+
+[dependencies.nickel]
+version = "*"
+
+[dependencies]
+rustc-serialize = "0.3.19"
+hyper = "0.9.1"
