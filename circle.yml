@@ -11,3 +11,11 @@ dependencies:
 test:
   override:
     - eval `ssh-agent` && ssh-add ~/.ssh/id_circleci_github && cargo test
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - eval `ssh-agent` && ssh-add ~/.ssh/id_circleci_github && cargo build --release
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
