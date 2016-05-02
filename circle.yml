@@ -17,5 +17,6 @@ deployment:
     branch: master
     commands:
       - eval `ssh-agent` && ssh-add ~/.ssh/id_circleci_github && cargo build --release
+      - docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+      - docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
